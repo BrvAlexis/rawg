@@ -24,8 +24,8 @@ const PageList = (argument = '') => {
               displayResults(responseData.results)
             });
         };
-    
-        fetchList(`https://api.rawg.io/api/games?key=${API_KEY}`, cleanedArgument);
+        
+        fetchList(`https://api.rawg.io/api/games?key=${API_KEY}&dates=2019-09-01,2019-09-30&platforms=18,1,7`, cleanedArgument);
       };
     
       const render = () => {
@@ -40,3 +40,4 @@ const PageList = (argument = '') => {
     
       render();
     };
+    export default PageList;

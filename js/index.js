@@ -1,3 +1,5 @@
+import routes from './routes.js';
+
 const callRoute = () => {
     const { hash } = window.location;
     const pathParts = hash.substring(1).split('/');
@@ -14,4 +16,3 @@ const callRoute = () => {
   window.addEventListener('hashchange', () => callRoute());
   window.addEventListener('DOMContentLoaded', () => callRoute());
 
-  
