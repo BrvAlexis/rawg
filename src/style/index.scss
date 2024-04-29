@@ -1,4 +1,4 @@
-$color-primary: #333;
+$color-primary: #1d1b1b;
 $color-text: white;
 $font-size: 16px;
 $font-size-title: 50px;
@@ -54,4 +54,14 @@ $color-title: red;
         color: white;
     }
   }
+}
+
+body {
+    background-color: $color-primary; // Utilisez la même couleur que celle de la navbar
+    color: $color-text; // Définissez la couleur du texte en blanc
+
+    h1, h2, h3, h4, h5, h6 { // Sélectionnez tous les titres
+        color: $color-text; // Définissez la couleur des titres en blanc
+        font-weight: bold; // Mettez les titres en gras
+    }
 }

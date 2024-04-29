@@ -2,6 +2,7 @@ import { API_KEY } from './apikey.js';
 
 const PageList = (argument = '') => {
     const preparePage = () => {
+      
         const cleanedArgument = argument.trim().replace(/\s+/g, '-');
     
         const displayResults = (articles) => {
