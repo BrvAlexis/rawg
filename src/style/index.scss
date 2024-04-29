@@ -85,7 +85,7 @@ body {
     border-radius: 10px;
     margin: 10px;
     padding: 20px;
-    width: 200px;
+    width: 300px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     overflow: hidden;
@@ -105,15 +105,6 @@ body {
       color: #333;
     }
   
-    .game-platforms {
-      display: flex;
-      gap: 10px;
-  
-      img {
-        width: 30px;
-        height: 30px;
-      }
-    }
   
     .game-details-link {
       color: #333;
@@ -122,10 +113,12 @@ body {
     }
   
    
-      .game-platforms svg {
-        fill: white;
-        width: 20px;
-        height: 20px;
+    .game-platforms span {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 5px;
+        background-color: #ddd;
+        border-radius: 5px;
       }
 }
 

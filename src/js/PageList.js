@@ -2,9 +2,9 @@ import { API_KEY } from './apikey.js';
 
 const platformIcons = {
   'PC': './src/assets/images/windows.svg',
-  'PlayStation': './src/assets/images/playstation.svg',
+  'PlayStation 5': './src/assets/images/playstation.svg',
   'LINUX': './src/assets/images/linux-svgrepo-com.svg',
-  'Xbox' : './src/assets/images/xbox.svg',
+  'Xbox One' : './src/assets/images/xbox.svg',
   'iOS' : './src/assets/images/phone.svg',
   'Nintendo': './src/assets/images/nintendo-switch.svg'
   
@@ -31,7 +31,7 @@ const PageList = (argument = '') => {
             <h1 class="game-name">${article.name}</h1>
             <div class="game-platforms">
               ${article.platforms.map(platform => 
-                `<img src="${platformIcons[platform.platform.slug]}" alt="${platform.platform.name}">`
+                `<span>${platform.platform.name}</span>`
               ).join('')}
             </div>
             <a href="#pagedetail/${article.slug}" class="game-details-link">Voir les détails</a>
@@ -52,7 +52,7 @@ const PageList = (argument = '') => {
             });
         };
         
-        fetchList(`https://api.rawg.io/api/games?key=${API_KEY}&dates=2019-09-01,2019-09-30&platforms=18,1,7`, cleanedArgument);
+        fetchList(`https://api.rawg.io/api/games?key=${API_KEY}`, cleanedArgument);
       };
     
       const render = () => {
