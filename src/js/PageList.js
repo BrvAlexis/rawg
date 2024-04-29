@@ -1,5 +1,6 @@
 import { API_KEY } from './apikey.js';
 
+
 const PageList = (argument = '') => {
     const preparePage = () => {
       
@@ -41,4 +42,16 @@ const PageList = (argument = '') => {
     
       render();
     };
-    export default PageList;
+    
+
+// Ajoutez ce code pour ajouter un gestionnaire d'événements 'input' à votre champ de recherche
+document.querySelector('.search-form input[type="text"]').addEventListener('input', function(event) {
+  // Obtient le terme de recherche de l'input
+  const searchTerm = event.target.value;
+
+  // Appelle PageList avec le terme de recherche
+  PageList(searchTerm);
+});
+    
+    
+export default PageList;
