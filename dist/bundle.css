@@ -12104,29 +12104,34 @@ textarea.form-control-lg {
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/style/index.scss ***!
   \*************************************************************************************************************************************************************************************/
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background-color: #333;
-  color: #fff;
-  padding: 20px;
+  color: white;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  margin: 10px;
 }
 .navbar .title {
+  color: red;
   font-size: 50px;
   font-weight: bold;
-  color: red;
-}
-.navbar .search-form {
-  display: flex;
-  align-items: center;
+  transition: color 0.3s ease-in-out;
 }
 .navbar .search-form input[type=text] {
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  border-radius: 15px;
   padding: 10px;
   border: 2px solid white;
   background: #333;
-  border-radius: 15px;
+  border-radius: 25px;
   background: url(582e6fdae2c59f4e7b41.svg) no-repeat scroll 10px 14px;
   padding-left: 30px;
   width: 300px;
   color: white;
+}
+@media (max-width: 480px) {
+  .navbar .search-form input[type=text] {
+    width: 100%;
+  }
 }

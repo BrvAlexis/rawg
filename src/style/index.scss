@@ -1,34 +1,57 @@
+$color-primary: #333;
+$color-text: white;
+$font-size: 16px;
+$font-size-title: 50px;
+$font-family: Arial, sans-serif;
+$margin: 10px;
+$color-title: red;
+
+// Mixins
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+            border-radius: $radius;
+} // Ajoutez cette ligne
+
+@mixin transition($property, $duration, $timing) {
+    transition: $property $duration $timing;
+}
+
+@mixin mobile {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
+    background-color: $color-primary;
+    color: $color-text;
+    font-size: $font-size;
+    font-family: $font-family;
+    margin: $margin;
   
     .title {
-      font-size: 50px;
-      font-weight: bold;
-      color: red;
+    color: $color-title; // Utilisez la variable pour la couleur
+         font-size: $font-size-title; // Utilisez la variable pour la taille de la police
+         font-weight: bold;
+      @include transition(color, 0.3s, ease-in-out);
     }
   
     .search-form {
-      display: flex;
-      align-items: center;
-  
       input[type="text"] {
+        @include border-radius(15px);
+        @include mobile {
+          width: 100%;
+        }
         padding: 10px;
         border: 2px solid white;
         background: #333;
-        border-radius: 15px;
+        border-radius: 25px;
         background: url('/home/alexisbrv/rawg/src/assets/images/search.svg') no-repeat scroll 10px 14px; // Remplacez par le chemin vers votre image de loupe
         padding-left: 30px; // Ajustez cette valeur en fonction de la taille de votre image de loupe
         width: 300px;
         color: white;
-      }
-  
-      
-      
     }
   }
-  
+}
