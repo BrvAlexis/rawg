@@ -12144,3 +12144,75 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
   color: white;
   font-weight: bold;
 }
+
+.page-list .articles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
+  gap: 20px;
+}
+
+.cardGame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 20px;
+  width: 200px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  overflow: hidden;
+}
+.cardGame img {
+  width: 100%;
+  height: auto;
+}
+.cardGame .game-name {
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+}
+.cardGame .game-released {
+  font-size: 18px;
+  color: #333;
+}
+.cardGame .game-platforms {
+  display: flex;
+  gap: 10px;
+}
+.cardGame .game-platforms img {
+  width: 30px;
+  height: 30px;
+}
+.cardGame .game-details-link {
+  color: #333;
+  text-decoration: none;
+  margin-top: 20px;
+}
+.cardGame .game-platforms svg {
+  fill: white;
+  width: 20px;
+  height: 20px;
+}
+
+.cardGame img:hover::after {
+  content: attr(data-released) " - " attr(data-publisher) " - " attr(data-genres) " - Rating: " attr(data-rating) " - Votes: " attr(data-votes);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+}

@@ -1,5 +1,16 @@
 import { API_KEY } from './apikey.js';
 
+const platformIcons = {
+  'PC': './src/assets/images/windows.svg',
+  'PlayStation': './src/assets/images/playstation.svg',
+  'LINUX': './src/assets/images/linux-svgrepo-com.svg',
+  'Xbox' : './src/assets/images/xbox.svg',
+  'iOS' : './src/assets/images/phone.svg',
+  'Nintendo': './src/assets/images/nintendo-switch.svg'
+  
+  // Ajoutez d'autres plateformes et leurs icônes ici
+};
+
 
 const PageList = (argument = '') => {
     const preparePage = () => {
@@ -9,21 +20,35 @@ const PageList = (argument = '') => {
         const displayResults = (articles) => {
           const resultsContent = articles.map((article) => (
             `<article class="cardGame">
-              <h1>${article.name}</h1>
-              <h2>${article.released}</h2>
-              <a href="#pagedetail/${article.id}">${article.id}</a>
-            </article>`
+            <div class="game-image" 
+                 data-released="${article.released}" 
+                 data-publisher="${article.publishers && article.publishers.length > 0 ? article.publishers[0].name : 'N/A'}" 
+                 data-genres="${article.genres.map(genre => genre.name).join(', ')}"
+                 data-rating="${article.rating}"
+                 data-votes="${article.ratings_count}">
+              <img src="${article.background_image}" alt="${article.name}">
+            </div>
+            <h1 class="game-name">${article.name}</h1>
+            <div class="game-platforms">
+              ${article.platforms.map(platform => 
+                `<img src="${platformIcons[platform.platform.slug]}" alt="${platform.platform.name}">`
+              ).join('')}
+            </div>
+            <a href="#pagedetail/${article.slug}" class="game-details-link">Voir les détails</a>
+          </article>`
           ));
           const resultsContainer = document.querySelector('.page-list .articles');
           resultsContainer.innerHTML = resultsContent.join("\n");
         };
     
         const fetchList = (url, argument) => {
-          const finalURL = argument ? `${url}&search=${argument}` : url;
+          const finalURL = argument ? `${url}&search=${argument}&page_size=9&ordering=-released` : url;
           fetch(finalURL)
             .then((response) => response.json())
-            .then((responseData) => {
-              displayResults(responseData.results)
+            .then((data) => {
+              console.log(data); // Ajoutez cette ligne
+              displayResults(data.results);
+              
             });
         };
         
