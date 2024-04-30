@@ -1,14 +1,12 @@
 import { API_KEY } from './apikey.js';
 
 const platformIcons = {
-  'PC': './src/assets/images/windows.svg',
-  'PlayStation 5': './src/assets/images/playstation.svg',
-  'LINUX': './src/assets/images/linux-svgrepo-com.svg',
-  'Xbox One' : './src/assets/images/xbox.svg',
-  'iOS' : './src/assets/images/phone.svg',
-  'Nintendo': './src/assets/images/nintendo-switch.svg'
-  
-  // Ajoutez d'autres plateformes et leurs icônes ici
+  xbox: 'src/assets/images/xbox.svg',
+  pc: 'src/assets/images/windows.svg',
+  nintendoswitch: 'src/assets/images/switch.svg',
+  ps4: 'src/assets/images/ps4.svg',
+  android: 'src/assets/images/mobile.svg',
+  linux: 'src/assets/images/linux.svg'
 };
 const fetchPlatforms = () => {
   fetch(`https://api.rawg.io/api/platforms?key=${API_KEY}`)
@@ -36,6 +34,7 @@ const PageList = (argument = '') => {
             const articleHTML = `
               
               <article class="cardGame">
+              <a href="#pagedetail/${article.slug}" class="game-details-link">
                 <div class="game-image" 
                      data-released="${article.released}" 
                      data-publisher="${article.publishers && article.publishers.length > 0 ? article.publishers[0].name : 'N/A'}" 
@@ -48,15 +47,19 @@ const PageList = (argument = '') => {
                 </div>
                 <h1 class="game-name">${article.name}</h1>
                 <div class="game-platforms">
-                  ${article.platforms.map(platform => 
-                    `<span>${platform.platform.name}</span>`
-                  ).join('')}
+                    ${article.platforms.map(platform => 
+                        platformIcons[platform.platform.slug] ?
+                        `<span>
+                            <img src="${platformIcons[platform.platform.slug]}" alt="${platform.platform.name}" />
+                        </span>` :
+                        `<span>${platform.platform.name}</span>`
+                    ).join('')}
                 </div>
-                <a href="#pagedetail/${article.slug}" class="game-details-link">Voir les détails</a>
+                
                 <div class="hover-info">
                 ${article.released} - ${article.publishers && article.publishers.length > 0 ? article.publishers[0].name : 'N/A'} - ${article.genres.map(genre => genre.name).join(', ')} - Rating: ${article.rating} - Votes: ${article.ratings_count}
               </div>
-
+              </a>
               </article>`;
         
               const articleElement = document.createElement('div');
