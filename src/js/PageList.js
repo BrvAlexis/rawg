@@ -32,53 +32,54 @@ const PageList = (argument = '') => {
     
         const displayResults = (articles, append = false) => {
           const resultsContent = articles.map((article) => {
-            const articleHTML = `
+              const articleHTML = `
+                  <article class="cardGame">
+                      <a href="#pagedetail/${article.slug}" class="game-details-link">
+                          <div class="game-image" 
+                              data-released="${article.released}"
+                              data-publisher="${article.publishers && article.publishers.length > 0 ? article.publishers[0].name : 'N/A'}" 
+                              data-genres="${article.genres.map(genre => genre.name).join(', ')}"
+                              data-rating="${article.rating}"
+                              data-votes="${article.ratings_count}">
+                              <div class="image-container">
+                                  <img src="${article.background_image}" alt="${article.name}">
+                              </div>
+                          </div>
+                          <h1 class="game-name">${article.name}</h1>
+                          <div class="game-platforms">
+                              ${article.parent_platforms.map(parentPlatform => 
+                                  platformIcons[parentPlatform.platform.slug] ?
+                                  `<span>
+                                      <img src="${platformIcons[parentPlatform.platform.slug]}" alt="${parentPlatform.platform.name}" />
+                                  </span>` :
+                                  `<span>${parentPlatform.platform.name}</span>`
+                              ).join('')}
+                          </div>
+                          <div class="hover-info">
+                              Date de sortie : ${article.released} <br>
+                              Éditeur : ${article.publishers && article.publishers.length > 0 ? article.publishers[0].name : 'N/A'} <br>
+                              Genres : ${article.genres.map(genre => genre.name).join(', ')} <br>
+                              Note : ${article.rating}/5 <br>
+                              Votes : ${article.ratings_count}
+                          </div>
+                      </a>
+                  </article>`;
               
-              <article class="cardGame">
-              <a href="#pagedetail/${article.slug}" class="game-details-link">
-                <div class="game-image" 
-                     data-released="${article.released}" 
-                     data-publisher="${article.publishers && article.publishers.length > 0 ? article.publishers[0].name : 'N/A'}" 
-                     data-genres="${article.genres.map(genre => genre.name).join(', ')}"
-                     data-rating="${article.rating}"
-                     data-votes="${article.ratings_count}">
-                     
-                  <div class="image-container">
-                     <img src="${article.background_image}" alt="${article.name}">
-                  </div>
-                </div>
-                <h1 class="game-name">${article.name}</h1>
-                <div class="game-platforms">
-    ${article.parent_platforms.map(parentPlatform => 
-        platformIcons[parentPlatform.platform.slug] ?
-        `<span>
-            <img src="${platformIcons[parentPlatform.platform.slug]}" alt="${parentPlatform.platform.name}" />
-        </span>` :
-        `<span>${parentPlatform.platform.name}</span>`
-    ).join('')}
-</div>
-                
-                <div class="hover-info">
-                ${article.released} - ${article.publishers && article.publishers.length > 0 ? article.publishers[0].name : 'N/A'} - ${article.genres.map(genre => genre.name).join(', ')} - Rating: ${article.rating} - Votes: ${article.ratings_count}
-              </div>
-              </a>
-              </article>`;
-        
               const articleElement = document.createElement('div');
               articleElement.innerHTML = articleHTML.trim();
           
               articleElement.querySelector('.game-image img').addEventListener('mouseover', function(event) {
-                const hoverElement = event.target.parentNode.querySelector('.hover-info');
-                
+                  const hoverElement = event.target.parentNode.querySelector('.hover-info');
+                  hoverElement.style.opacity = '1';
               });
           
               articleElement.querySelector('.game-image img').addEventListener('mouseout', function(event) {
-                const hoverElement = event.target.parentNode.querySelector('.hover-info');
-                
+                  const hoverElement = event.target.parentNode.querySelector('.hover-info');
+                  hoverElement.style.opacity = '0';
               });
           
               return articleElement.firstChild;
-            });
+          });
         
             const resultsContainer = document.querySelector('.page-list .articles');
             if (!append) {
