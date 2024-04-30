@@ -5,8 +5,10 @@ const PageDetail = (argument) => {
     const cleanedArgument = argument.trim().replace(/\s+/g, "-");
 
     const displayGame = (gameData) => {
-      const { name, released, description, publishers, genres, platforms, website, rating, ratings_count, stores } = gameData;
+      const { name, released, description, publishers, genres, platforms, website, rating, ratings_count, stores, background_image, developers, tags, clip, screenshots } = gameData;
       const articleDOM = document.querySelector(".page-detail .article");
+      
+      
       articleDOM.querySelector("h1.title").innerHTML = name;
       articleDOM.querySelector("p.release-date span").innerHTML = new Date(released).toLocaleDateString();
       articleDOM.querySelector("p.description").innerHTML = description;
@@ -17,6 +19,13 @@ const PageDetail = (argument) => {
       articleDOM.querySelector("p.rating span").innerHTML = rating;
       articleDOM.querySelector("p.votes span").innerHTML = ratings_count;
       articleDOM.querySelector("p.stores span").innerHTML = stores.map(store => `<a href="${store.url_en}" target="_blank">${store.store.name}</a>`).join(', ');
+    
+      
+      articleDOM.querySelector("img.main-image").src = background_image;
+      articleDOM.querySelector("p.developers span").innerHTML = developers.map(developer => developer.name).join(', ');
+      articleDOM.querySelector("p.tags span").innerHTML = tags.map(tag => tag.name).join(', ');
+      articleDOM.querySelector("video.presentation-video").src = clip.clip;
+      articleDOM.querySelector("div.screenshots").innerHTML = screenshots.map(screenshot => `<img src="${screenshot.image}" alt="Screenshot of ${name}">`).join('');
     };
 
     const fetchGame = (url, argument) => {
@@ -40,20 +49,29 @@ const PageDetail = (argument) => {
   const render = () => {
     pageContent.innerHTML = `
     <section class="page-detail">
-        <div class="article">
-          
-          <h1 class="title"></h1>
-          <p class="release-date">Release date : <span></span></p>
-          <p class="description"></p>
-          <p class="publisher">Publisher : <span></span></p>
-          <p class="genres">Genres : <span></span></p>
-          <p class="platforms">Platforms : <span></span></p>
-          <a href="" class="website">Website</a>
-          <p class="rating">Rating : <span></span></p>
-          <p class="votes">Votes : <span></span></p>
-          <p class="stores">Stores : <span></span></p>
-        </div>
-      </section>
+  <div class="article">
+    
+    <img class="main-image" src="" alt="Main image">
+    <h1 class="title"></h1>
+    <p class="rating">Note moyenne : <span></span></p>
+    <p class="votes">Nombre de votes : <span></span></p>
+    <p class="release-date">Date de sortie : <span></span></p>
+    <p class="description"></p>
+    <p class="developers">Studio(s) de développement : <span></span></p>
+    <p class="tags">Tags : <span></span></p>
+    <p class="publisher">Éditeur : <span></span></p>
+    <p class="genres">Genres : <span></span></p>
+    <p class="platforms">Plateformes : <span></span></p>
+    <a href="" class="website">Site Web</a>
+    <video class="presentation-video" controls>
+      <source src="" type="video/mp4">
+      Votre navigateur ne supporte pas la vidéo.
+    </video>
+    
+    <div class="screenshots"></div>
+    <p class="stores">Magasins : <span></span></p>
+  </div>
+</section>
     `;
 
     preparePage();

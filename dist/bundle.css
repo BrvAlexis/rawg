@@ -12103,6 +12103,7 @@ textarea.form-control-lg {
 /*!*************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/style/index.scss ***!
   \*************************************************************************************************************************************************************************************/
+@charset "UTF-8";
 .navbar {
   background-color: #1d1b1b;
   color: white;
@@ -12154,7 +12155,6 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
 }
 
 .cardGame {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12167,10 +12167,7 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   overflow: hidden;
-}
-.cardGame img {
-  width: 100%;
-  height: auto;
+  position: relative;
 }
 .cardGame .game-name {
   font-size: 24px;
@@ -12182,7 +12179,7 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
   color: #333;
 }
 .cardGame .game-details-link {
-  color: #333;
+  color: white;
   text-decoration: none;
   margin-top: 20px;
 }
@@ -12193,9 +12190,20 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
   background-color: #ddd;
   border-radius: 5px;
 }
-
-.cardGame img:hover::after {
-  content: attr(data-released) " - " attr(data-publisher) " - " attr(data-genres) " - Rating: " attr(data-rating) " - Votes: " attr(data-votes);
+.cardGame .game-image {
+  width: 100%;
+  height: auto;
+}
+.cardGame .game-image .image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.cardGame .game-image .image-container img {
+  width: 100%;
+  height: auto;
+}
+.cardGame .hover-info {
   position: absolute;
   top: 0;
   left: 0;
@@ -12209,4 +12217,55 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
   padding: 10px;
   box-sizing: border-box;
   text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* Ajouté */
+}
+.cardGame .game-image:hover ~ .hover-info {
+  opacity: 1;
+}
+
+.page-detail .article {
+  position: relative;
+}
+.page-detail .article .main-image {
+  width: 100%;
+  height: auto;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+@media (max-width: 480px) {
+  .page-detail .article .main-image {
+    width: 100%;
+  }
+}
+.page-detail .article .website {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  text-decoration: none;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+}
+.page-detail .article h1.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page-detail .article h1.title .rating, .page-detail .article h1.title .votes {
+  color: red;
+  font-size: 16px;
+}
+.page-detail .article .stores, .page-detail .article .presentation-video, .page-detail .article .screenshots {
+  color: red;
+  font-size: 50px;
+  font-weight: bold;
 }

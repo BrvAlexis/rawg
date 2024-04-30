@@ -18,27 +18,57 @@ const PageList = (argument = '') => {
         const cleanedArgument = argument.trim().replace(/\s+/g, '-');
     
         const displayResults = (articles) => {
-          const resultsContent = articles.map((article) => (
-            `<article class="cardGame">
-            <div class="game-image" 
-                 data-released="${article.released}" 
-                 data-publisher="${article.publishers && article.publishers.length > 0 ? article.publishers[0].name : 'N/A'}" 
-                 data-genres="${article.genres.map(genre => genre.name).join(', ')}"
-                 data-rating="${article.rating}"
-                 data-votes="${article.ratings_count}">
-              <img src="${article.background_image}" alt="${article.name}">
-            </div>
-            <h1 class="game-name">${article.name}</h1>
-            <div class="game-platforms">
-              ${article.platforms.map(platform => 
-                `<span>${platform.platform.name}</span>`
-              ).join('')}
-            </div>
-            <a href="#pagedetail/${article.slug}" class="game-details-link">Voir les détails</a>
-          </article>`
-          ));
+          const resultsContent = articles.map((article) => {
+            const articleHTML = `
+              <article class="cardGame">
+                <div class="game-image" 
+                     data-released="${article.released}" 
+                     data-publisher="${article.publishers && article.publishers.length > 0 ? article.publishers[0].name : 'N/A'}" 
+                     data-genres="${article.genres.map(genre => genre.name).join(', ')}"
+                     data-rating="${article.rating}"
+                     data-votes="${article.ratings_count}">
+                  <div class="image-container">
+                     <img src="${article.background_image}" alt="${article.name}">
+                  </div>
+                </div>
+                <h1 class="game-name">${article.name}</h1>
+                <div class="game-platforms">
+                  ${article.platforms.map(platform => 
+                    `<span>${platform.platform.name}</span>`
+                  ).join('')}
+                </div>
+                <a href="#pagedetail/${article.slug}" class="game-details-link">Voir les détails</a>
+                <div class="hover-info"></div>
+
+              </article>`;
+        
+            const articleElement = document.createElement('div');
+            articleElement.innerHTML = articleHTML.trim();
+        
+            articleElement.querySelector('.game-image img').addEventListener('mouseover', function(event) {
+              const hoverElement = document.createElement('div');
+              hoverElement.classList.add('hover-info');
+              hoverElement.textContent = event.target.parentNode.getAttribute('data-released') + ' - ' +
+                                         event.target.parentNode.getAttribute('data-publisher') + ' - ' +
+                                         event.target.parentNode.getAttribute('data-genres') + ' - Rating: ' +
+                                         event.target.parentNode.getAttribute('data-rating') + ' - Votes: ' +
+                                         event.target.parentNode.getAttribute('data-votes');
+              event.target.parentNode.appendChild(hoverElement);
+            });
+        
+            articleElement.querySelector('.game-image img').addEventListener('mouseout', function(event) {
+              const hoverElement = event.target.parentNode.querySelector('.hover-info');
+              if (hoverElement) {
+                hoverElement.remove();
+              }
+            });
+        
+            return articleElement.firstChild;
+          });
+        
           const resultsContainer = document.querySelector('.page-list .articles');
-          resultsContainer.innerHTML = resultsContent.join("\n");
+          resultsContainer.innerHTML = '';
+          resultsContent.forEach(element => resultsContainer.appendChild(element));
         };
     
         const fetchList = (url, argument) => {
@@ -77,6 +107,7 @@ document.querySelector('.search-form input[type="text"]').addEventListener('inpu
   // Appelle PageList avec le terme de recherche
   PageList(searchTerm);
 });
-    
+
+
     
 export default PageList;

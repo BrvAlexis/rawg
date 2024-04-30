@@ -76,7 +76,7 @@ body {
   }
 
 .cardGame {
-    position: relative;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -89,10 +89,8 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     overflow: hidden;
-    img {
-      width: 100%;
-      height: auto;
-    }
+    position: relative;
+   
   
     .game-name {
       font-size: 24px;
@@ -107,7 +105,7 @@ body {
   
   
     .game-details-link {
-      color: #333;
+      color: white;
       text-decoration: none;
       margin-top: 20px;
     }
@@ -120,22 +118,97 @@ body {
         background-color: #ddd;
         border-radius: 5px;
       }
-}
 
-.cardGame img:hover::after {
-    content: attr(data-released) ' - ' attr(data-publisher) ' - ' attr(data-genres) ' - Rating: ' attr(data-rating) ' - Votes: ' attr(data-votes);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    box-sizing: border-box;
-    text-align: center;
+      .game-image {
+        width: 100%;
+        height: auto;
+    
+        .image-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+    
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+    
+      .hover-info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        box-sizing: border-box;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none; /* Ajouté */
+      }
+    
+      .game-image:hover ~ .hover-info {
+        opacity: 1;
+      }
+    }
+         
+          
+        
+      
+    
+
+
+
+.page-detail {
+  .article {
+    position: relative;
+
+    .main-image {
+      width: 100%;
+      height: auto;
+      @include border-radius(10px);
+      @include transition(all, 0.3s, ease-in-out);
+
+      @include mobile {
+        width: 100%;
+      }
+    
+    }
+    .website {
+      position: absolute;
+      right: $margin;
+      bottom: $margin;
+      padding: $margin;
+      background-color: $color-title;
+      color: $color-text;
+      text-decoration: none;
+      @include border-radius(5px);
+    }
+
+    h1.title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .rating, .votes {
+        color: red;
+        font-size: $font-size;
+      }
+    }
+
+  
+    .stores, .presentation-video, .screenshots {
+      color: $color-title;
+      font-size: $font-size-title;
+      font-weight: bold;
+    }
+  }
 }
 
