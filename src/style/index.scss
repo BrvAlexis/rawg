@@ -198,72 +198,85 @@ body {
         opacity: 1;
       }
     }
-         
-          
+     
         
       
     
 
 
 
-.page-detail {
-  .article {
-    position: relative;
 
-    .main-image {
-      width: 100%;
-      height: auto;
-      @include border-radius(10px);
-      @include transition(all, 0.3s, ease-in-out);
-
-      @include mobile {
-        width: 100%;
-      }
-    
-    }
-    .website {
-      position: absolute;
-      right: $margin;
-      bottom: $margin;
-      padding: $margin;
-      background-color: $color-title;
-      color: $color-text;
-      text-decoration: none;
-      @include border-radius(5px);
-    }
-
-    h1.title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      .rating, .votes {
-        color: red;
-        font-size: $font-size;
-      }
-    }
-
-  
-    .stores, .presentation-video, .screenshots {
-      color: $color-title;
-      font-size: $font-size-title;
-      font-weight: bold;
-    }
-  }
-}
 
 footer {
   // Styles de votre pied de page ici...
   position: relative; // Ajoutez cette ligne pour positionner la barre rouge par rapport au pied de page
 }
 
-#redBar {
-  background-color: red; // Pour rendre la barre rouge
-  height: 10px; // Hauteur de la barre
-  width: 15%; // Largeur de la barre
-  position: absolute; // Positionne la barre par rapport au pied de page
-  top: 0; // Place la barre en haut du pied de page
-  left: 0;
-  margin-bottom: 100px; // Place la barre à gauche du pied de page
-}
+  #redBar {
+    background-color: red; // Pour rendre la barre rouge
+    height: 10px; // Hauteur de la barre
+    width: 15%; // Largeur de la barre
+    position: absolute; // Positionne la barre par rapport au pied de page
+    top: 0; // Place la barre en haut du pied de page
+    left: 0;
+    margin-bottom: 100px; // Place la barre à gauche du pied de page
+  }
 
+// Styles de la page de détail
+.page-detail {
+  .article {
+    width: 80%;
+    margin: 0 auto;
+
+    .main-image {
+      width: 100%;
+      height: auto;
+    }
+
+    .title {
+      font-size: 2em;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .description,
+    .release-date,
+    .rating,
+    .votes,
+    .developers,
+    .publisher,
+    .genres,
+    .platforms,
+    .tags,
+    .stores {
+      margin-top: 10px;
+    }
+
+    .website {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      
+      text-decoration: none;
+    }
+
+    .presentation-video {
+      width: 100%;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    .screenshots {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+
+      img {
+        width: 200px;
+        height: auto;
+        margin: 10px;
+      }
+    }
+  }
+}

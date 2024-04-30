@@ -12255,51 +12255,6 @@ body #showMore {
   opacity: 1;
 }
 
-.page-detail .article {
-  position: relative;
-}
-.page-detail .article .main-image {
-  width: 100%;
-  height: auto;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  border-radius: 10px;
-  transition: all 0.3s ease-in-out;
-}
-@media (max-width: 480px) {
-  .page-detail .article .main-image {
-    width: 100%;
-  }
-}
-.page-detail .article .website {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  padding: 10px;
-  background-color: red;
-  color: white;
-  text-decoration: none;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  border-radius: 5px;
-}
-.page-detail .article h1.title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.page-detail .article h1.title .rating, .page-detail .article h1.title .votes {
-  color: red;
-  font-size: 16px;
-}
-.page-detail .article .stores, .page-detail .article .presentation-video, .page-detail .article .screenshots {
-  color: red;
-  font-size: 50px;
-  font-weight: bold;
-}
-
 footer {
   position: relative;
 }
@@ -12312,4 +12267,52 @@ footer {
   top: 0;
   left: 0;
   margin-bottom: 100px;
+}
+
+.page-detail .article {
+  width: 80%;
+  margin: 0 auto;
+}
+.page-detail .article .main-image {
+  width: 100%;
+  height: auto;
+}
+.page-detail .article .title {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 20px;
+}
+.page-detail .article .description,
+.page-detail .article .release-date,
+.page-detail .article .rating,
+.page-detail .article .votes,
+.page-detail .article .developers,
+.page-detail .article .publisher,
+.page-detail .article .genres,
+.page-detail .article .platforms,
+.page-detail .article .tags,
+.page-detail .article .stores {
+  margin-top: 10px;
+}
+.page-detail .article .website {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  text-decoration: none;
+}
+.page-detail .article .presentation-video {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+.page-detail .article .screenshots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+.page-detail .article .screenshots img {
+  width: 200px;
+  height: auto;
+  margin: 10px;
 }

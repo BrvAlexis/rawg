@@ -103,6 +103,22 @@ const PageList = (argument = '') => {
           
           fetchList(`https://api.rawg.io/api/games?key=${API_KEY}`, cleanedArgument, platform, count + 1);
         };
+              
+        // Ajoutez un écouteur d'événements au bouton "Show more"
+              document.getElementById('showMore').addEventListener('click', function() {
+                count++;
+                PageList(document.querySelector('.search-form input[type="text"]').value);
+                if (count >= 2) {
+                    // Cachez le bouton "Show more" après 2 clics
+                    this.style.display = 'none';
+                }
+              });
+
+              // Add an event listener to the platform select
+              document.querySelector('.platform-select').addEventListener('change', function(event) {
+                PageList(document.querySelector('.search-form input[type="text"]').value);
+              });
+
     
       
       
@@ -119,18 +135,12 @@ const PageList = (argument = '') => {
     
       render();
     };
+
+
     
 
 
-// Ajoutez un écouteur d'événements au bouton "Show more"
-document.getElementById('showMore').addEventListener('click', function() {
-  count++;
-  PageList(document.querySelector('.search-form input[type="text"]').value);
-  if (count >= 2) {
-      // Cachez le bouton "Show more" après 2 clics
-      this.style.display = 'none';
-  }
-});
+
 
 // Add an event listener to the search form
 document.querySelector('.search-form input[type="text"]').addEventListener('input', function(event) {
@@ -138,10 +148,7 @@ document.querySelector('.search-form input[type="text"]').addEventListener('inpu
   PageList(searchTerm);
 });
 
-// Add an event listener to the platform select
-document.querySelector('.platform-select').addEventListener('change', function(event) {
-  PageList(document.querySelector('.search-form input[type="text"]').value);
-});
+
 
 document.addEventListener('DOMContentLoaded', function() {
   fetchPlatforms();
