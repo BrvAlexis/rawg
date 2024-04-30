@@ -49,23 +49,25 @@ const PageDetail = (argument) => {
   const render = () => {
     pageContent.innerHTML = `
     <section class="page-detail">
-        <div class="article">
-            <img class="main-image" src="" alt="Main image">
-            <h1 class="title"></h1>
+  <div class="article">
+    
+    <img class="main-image" src="" alt="Main image">
+    <h1 class="title"></h1>
             
             <h2>Informations générales</h2>
-            <p class="rating">Note moyenne : <span></span></p>
-            <p class="votes">Nombre de votes : <span></span></p>
-            <p class="release-date">Date de sortie : <span></span></p>
-            <p class="description"></p>
+    <p class="rating">Note moyenne : <span></span></p>
+    <p class="votes">Nombre de votes : <span></span></p>
+    <p class="release-date">Date de sortie : <span></span></p>
+    <p class="description"></p>
             
             <h2>Développeurs et éditeurs</h2>
-            <p class="developers">Studio(s) de développement : <span></span></p>
-            <p class="publisher">Éditeur : <span></span></p>
+    <p class="developers">Studio(s) de développement : <span></span></p>
+    <p class="tags">Tags : <span></span></p>
+    <p class="publisher">Éditeur : <span></span></p>
             
             <h2>Genres et plateformes</h2>
-            <p class="genres">Genres : <span></span></p>
-            <p class="platforms">Plateformes : <span></span></p>
+    <p class="genres">Genres : <span></span></p>
+    <p class="platforms">Plateformes : <span></span></p>
             
             <h2>Tags</h2>
             <p class="tags">Tags : <span></span></p>
@@ -74,19 +76,21 @@ const PageDetail = (argument) => {
             <p class="stores">Magasins : <span></span></p>
             
             <h2>Site Web</h2>
-            <a href="" class="website">Site Web</a>
+    <a href="" class="website">Site Web</a>
             
             <h2>Vidéo de présentation</h2>
-            <video class="presentation-video" controls>
-              <source src="" type="video/mp4">
-              Votre navigateur ne supporte pas la vidéo.
-            </video>
-            
+    <video class="presentation-video" controls>
+      <source src="" type="video/mp4">
+      Votre navigateur ne supporte pas la vidéo.
+    </video>
+    
             <h2>Captures d'écran</h2>
-            <div class="screenshots"></div>
-        </div>
-    </section>
+    <div class="screenshots"></div>
+    <p class="stores">Magasins : <span></span></p>
+  </div>
+</section>
     `;
+
     preparePage();
   };
 

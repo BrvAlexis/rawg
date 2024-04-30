@@ -12294,11 +12294,22 @@ footer {
 .page-detail .article .stores {
   margin-top: 10px;
 }
-.page-detail .article .website {
-  display: block;
-  text-align: center;
-  margin-top: 20px;
+.page-detail .article .website-button {
+  display: inline-block;
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
   text-decoration: none;
+  font-weight: bold;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 10;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+.page-detail .article .website-button:hover {
+  background-color: darkred;
 }
 .page-detail .article .presentation-video {
   width: 100%;
