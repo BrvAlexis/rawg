@@ -14,12 +14,13 @@ const platformIcons = {
 
 const PageList = (argument = '') => {
     const preparePage = () => {
-      
+        const platform = document.querySelector('.platform-select').value;
         const cleanedArgument = argument.trim().replace(/\s+/g, '-');
     
         const displayResults = (articles) => {
           const resultsContent = articles.map((article) => {
             const articleHTML = `
+              
               <article class="cardGame">
                 <div class="game-image" 
                      data-released="${article.released}" 
@@ -65,20 +66,37 @@ const PageList = (argument = '') => {
           resultsContent.forEach(element => resultsContainer.appendChild(element));
         };
     
-        const fetchList = (url, argument) => {
-          const finalURL = argument ? `${url}&search=${argument}&page_size=9&ordering=-released` : url;
+        const fetchList = (url, argument, platform) => {
+          let finalURL = argument ? `${url}&search=${argument}&page_size=9&ordering=-released` : url;
+          if (platform) {
+            finalURL += `&platforms=${platform}`;
+          }
           fetch(finalURL)
             .then((response) => response.json())
             .then((data) => {
-              console.log(data); // Ajoutez cette ligne
+              console.log(data);
               displayResults(data.results);
-              
             });
         };
         
-        fetchList(`https://api.rawg.io/api/games?key=${API_KEY}`, cleanedArgument);
+        fetchList(`https://api.rawg.io/api/games?key=${API_KEY}`, cleanedArgument, platform);
       };
     
+      const fetchPlatforms = () => {
+        fetch(`https://api.rawg.io/api/platforms?key=${API_KEY}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const selectElement = document.querySelector('.platform-select');
+            data.results.forEach((platform) => {
+              const optionElement = document.createElement('option');
+              optionElement.value = platform.id;
+              optionElement.textContent = platform.name;
+              selectElement.appendChild(optionElement);
+            });
+          });
+          
+      };
+      
       const render = () => {
         pageContent.innerHTML = `
           <section class="page-list">
@@ -87,21 +105,29 @@ const PageList = (argument = '') => {
         `;
     
         preparePage();
+        fetchPlatforms();
       };
     
       render();
     };
     
 
-// Ajoutez ce code pour ajouter un gestionnaire d'événements 'input' à votre champ de recherche
-document.querySelector('.search-form input[type="text"]').addEventListener('input', function(event) {
-  // Obtient le terme de recherche de l'input
-  const searchTerm = event.target.value;
 
-  // Appelle PageList avec le terme de recherche
+
+
+// Add an event listener to the search form
+document.querySelector('.search-form input[type="text"]').addEventListener('input', function(event) {
+  const searchTerm = event.target.value;
   PageList(searchTerm);
 });
 
+// Add an event listener to the platform select
+document.querySelector('.platform-select').addEventListener('change', function(event) {
+  PageList(document.querySelector('.search-form input[type="text"]').value);
+});
 
+document.addEventListener('DOMContentLoaded', function() {
+  fetchPlatforms();
+});
     
 export default PageList;

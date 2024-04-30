@@ -65,6 +65,26 @@ body {
         font-weight: bold; // Mettez les titres en gras
     }
 }
+.platform-select {
+  background-color: red;
+  color: white; // Pour que le texte soit visible
+  padding: 10px; // Pour un cadre plus gros
+  appearance: none; // Pour supprimer l'apparence par défaut
+  -webkit-appearance: none; // Pour supprimer l'apparence par défaut sur Safari
+  -moz-appearance: none; // Pour supprimer l'apparence par défaut sur Firefox
+
+  // Pour ajouter les flèches haut/bas
+  background-image: 
+      linear-gradient(45deg, transparent 50%, white 50%),
+      linear-gradient(-45deg, transparent 50%, white 50%);
+  background-position:
+      calc(100% - 20px) calc(1em + 2px), // Position de la flèche vers le bas
+      calc(100% - 15px) calc(1em + 2px); // Position de la flèche vers le haut
+  background-size:
+      5px 5px, // Taille de la flèche vers le bas
+      5px 5px; // Taille de la flèche vers le haut
+  background-repeat: no-repeat;
+}
 
 
   .page-list .articles {

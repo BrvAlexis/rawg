@@ -12146,6 +12146,19 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
   font-weight: bold;
 }
 
+.platform-select {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, white 50%), linear-gradient(-45deg, transparent 50%, white 50%);
+  background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
 .page-list .articles {
   display: flex;
   flex-wrap: wrap;
