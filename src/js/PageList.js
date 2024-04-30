@@ -38,33 +38,27 @@ const PageList = (argument = '') => {
                   ).join('')}
                 </div>
                 <a href="#pagedetail/${article.slug}" class="game-details-link">Voir les détails</a>
-                <div class="hover-info"></div>
+                <div class="hover-info">
+                ${article.released} - ${article.publishers && article.publishers.length > 0 ? article.publishers[0].name : 'N/A'} - ${article.genres.map(genre => genre.name).join(', ')} - Rating: ${article.rating} - Votes: ${article.ratings_count}
+              </div>
 
               </article>`;
         
-            const articleElement = document.createElement('div');
-            articleElement.innerHTML = articleHTML.trim();
-        
-            articleElement.querySelector('.game-image img').addEventListener('mouseover', function(event) {
-              const hoverElement = document.createElement('div');
-              hoverElement.classList.add('hover-info');
-              hoverElement.textContent = event.target.parentNode.getAttribute('data-released') + ' - ' +
-                                         event.target.parentNode.getAttribute('data-publisher') + ' - ' +
-                                         event.target.parentNode.getAttribute('data-genres') + ' - Rating: ' +
-                                         event.target.parentNode.getAttribute('data-rating') + ' - Votes: ' +
-                                         event.target.parentNode.getAttribute('data-votes');
-              event.target.parentNode.appendChild(hoverElement);
+              const articleElement = document.createElement('div');
+              articleElement.innerHTML = articleHTML.trim();
+          
+              articleElement.querySelector('.game-image img').addEventListener('mouseover', function(event) {
+                const hoverElement = event.target.parentNode.querySelector('.hover-info');
+                hoverElement.style.opacity = '1';
+              });
+          
+              articleElement.querySelector('.game-image img').addEventListener('mouseout', function(event) {
+                const hoverElement = event.target.parentNode.querySelector('.hover-info');
+                hoverElement.style.opacity = '0';
+              });
+          
+              return articleElement.firstChild;
             });
-        
-            articleElement.querySelector('.game-image img').addEventListener('mouseout', function(event) {
-              const hoverElement = event.target.parentNode.querySelector('.hover-info');
-              if (hoverElement) {
-                hoverElement.remove();
-              }
-            });
-        
-            return articleElement.firstChild;
-          });
         
           const resultsContainer = document.querySelector('.page-list .articles');
           resultsContainer.innerHTML = '';
