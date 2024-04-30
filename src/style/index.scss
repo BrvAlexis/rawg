@@ -64,9 +64,23 @@ body {
         color: $color-text; // Définissez la couleur des titres en blanc
         font-weight: bold; // Mettez les titres en gras
     }
+    #showMore {
+      position: fixed;
+      bottom: 0;
+      left: 50%; // Centrer horizontalement
+      transform: translateX(-50%); // Ajuster pour le centrage parfait
+      background-color: red; // Pour rendre le bouton rouge
+      color: white; // Pour rendre le texte blanc
+      border: none; // Pour supprimer la bordure
+      padding: 10px 20px; // Pour rendre le bouton rectangulaire
+      font-size: 16px;
+      font-weight: bold; // Pour ajuster la taille du texte
+  }
+  
 }
 .platform-select {
   background-color: red;
+  
   color: white; // Pour que le texte soit visible
   padding: 10px; // Pour un cadre plus gros
   appearance: none; // Pour supprimer l'apparence par défaut
@@ -137,6 +151,7 @@ body {
         margin: 5px;
         background-color: #ddd;
         border-radius: 5px;
+        
       }
 
       .game-image {
@@ -230,5 +245,20 @@ body {
       font-weight: bold;
     }
   }
+}
+
+footer {
+  // Styles de votre pied de page ici...
+  position: relative; // Ajoutez cette ligne pour positionner la barre rouge par rapport au pied de page
+}
+
+#redBar {
+  background-color: red; // Pour rendre la barre rouge
+  height: 10px; // Hauteur de la barre
+  width: 15%; // Largeur de la barre
+  position: absolute; // Positionne la barre par rapport au pied de page
+  top: 0; // Place la barre en haut du pied de page
+  left: 0;
+  margin-bottom: 100px; // Place la barre à gauche du pied de page
 }
 

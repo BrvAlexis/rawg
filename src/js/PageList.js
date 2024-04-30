@@ -10,14 +10,28 @@ const platformIcons = {
   
   // Ajoutez d'autres plateformes et leurs icônes ici
 };
-
-
+const fetchPlatforms = () => {
+  fetch(`https://api.rawg.io/api/platforms?key=${API_KEY}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const selectElement = document.querySelector('.platform-select');
+      data.results.forEach((platform) => {
+        const optionElement = document.createElement('option');
+        optionElement.value = platform.id;
+        optionElement.textContent = platform.name;
+        selectElement.appendChild(optionElement);
+      });
+    });
+    
+};
+let count = 0
 const PageList = (argument = '') => {
+    
     const preparePage = () => {
         const platform = document.querySelector('.platform-select').value;
         const cleanedArgument = argument.trim().replace(/\s+/g, '-');
     
-        const displayResults = (articles) => {
+        const displayResults = (articles, append = false) => {
           const resultsContent = articles.map((article) => {
             const articleHTML = `
               
@@ -61,41 +75,30 @@ const PageList = (argument = '') => {
               return articleElement.firstChild;
             });
         
-          const resultsContainer = document.querySelector('.page-list .articles');
-          resultsContainer.innerHTML = '';
-          resultsContent.forEach(element => resultsContainer.appendChild(element));
-        };
+            const resultsContainer = document.querySelector('.page-list .articles');
+            if (!append) {
+              resultsContainer.innerHTML = '';
+            }
+            resultsContent.forEach(element => resultsContainer.appendChild(element));
+          };
     
-        const fetchList = (url, argument, platform) => {
-          let finalURL = argument ? `${url}&search=${argument}&page_size=9&ordering=-released` : url;
-          if (platform) {
-            finalURL += `&platforms=${platform}`;
-          }
-          fetch(finalURL)
-            .then((response) => response.json())
-            .then((data) => {
-              console.log(data);
-              displayResults(data.results);
-            });
-        };
-        
-        fetchList(`https://api.rawg.io/api/games?key=${API_KEY}`, cleanedArgument, platform);
-      };
-    
-      const fetchPlatforms = () => {
-        fetch(`https://api.rawg.io/api/platforms?key=${API_KEY}`)
-          .then((response) => response.json())
-          .then((data) => {
-            const selectElement = document.querySelector('.platform-select');
-            data.results.forEach((platform) => {
-              const optionElement = document.createElement('option');
-              optionElement.value = platform.id;
-              optionElement.textContent = platform.name;
-              selectElement.appendChild(optionElement);
-            });
-          });
+          const fetchList = (url, argument, platform, page = 1) => {
+            let finalURL = argument ? `${url}&search=${argument}&page_size=9&ordering=-released&page=${page}` : `${url}&page_size=9&page=${page}`;
+            if (platform) {
+              finalURL += `&platforms=${platform}`;
+            }
+            fetch(finalURL)
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+                displayResults(data.results, page > 1);
+              });
+          };
           
-      };
+          fetchList(`https://api.rawg.io/api/games?key=${API_KEY}`, cleanedArgument, platform, count + 1);
+        };
+    
+      
       
       const render = () => {
         pageContent.innerHTML = `
@@ -113,7 +116,15 @@ const PageList = (argument = '') => {
     
 
 
-
+// Ajoutez un écouteur d'événements au bouton "Show more"
+document.getElementById('showMore').addEventListener('click', function() {
+  count++;
+  PageList(document.querySelector('.search-form input[type="text"]').value);
+  if (count >= 2) {
+      // Cachez le bouton "Show more" après 2 clics
+      this.style.display = 'none';
+  }
+});
 
 // Add an event listener to the search form
 document.querySelector('.search-form input[type="text"]').addEventListener('input', function(event) {
