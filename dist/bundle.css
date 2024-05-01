@@ -12112,7 +12112,7 @@ textarea.form-control-lg {
   margin: 10px;
 }
 .navbar .title {
-  color: red;
+  color: rgb(193, 3, 3);
   font-size: 50px;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
@@ -12150,7 +12150,7 @@ body #showMore {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  background-color: red;
+  background-color: rgb(193, 3, 3);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -12161,7 +12161,7 @@ body #showMore {
 }
 
 .platform-select {
-  background-color: red;
+  background-color: rgb(193, 3, 3);
   color: white;
   padding: 10px;
   appearance: none;
@@ -12260,7 +12260,7 @@ footer {
 }
 
 #redBar {
-  background-color: red;
+  background-color: rgb(193, 3, 3);
   height: 10px;
   width: 15%;
   position: absolute;
@@ -12272,14 +12272,14 @@ footer {
 .page-detail p.stores a {
   color: white; /* Met la couleur du texte en blanc */
   text-decoration: none; /* Supprime le soulignement */
-  border-bottom: 2px solid red; /* Ajoute une bordure inférieure rouge */
+  border-bottom: 2px solid rgb(193, 3, 3); /* Ajoute une bordure inférieure rouge */
   text-decoration: none; /* Supprime le soulignement */
   padding: 2px; /* Ajoute un peu d'espace autour du texte */
   margin-bottom: 10px; /* Ajoute un espace en dessous de chaque lien */
   display: inline-block; /* Chaque lien conserve sa taille de contenu */
 }
 .page-detail h2 {
-  color: red;
+  color: rgb(193, 3, 3);
   font-size: 3em;
 }
 .page-detail .container {
@@ -12299,11 +12299,34 @@ footer {
   text-align: left; /* Centre le texte dans chaque carte */
 }
 .page-detail .article {
-  width: 90%;
+  width: 100%;
+  position: relative;
 }
 .page-detail .main-image {
   width: 100%;
   height: auto;
+}
+.page-detail a.website {
+  text-decoration: none;
+  position: absolute;
+  top: 600px;
+  right: 20px;
+  z-index: 1;
+  background-color: rgb(193, 3, 3);
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.page-detail a.website::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 20px solid white;
+  margin-left: 50px;
 }
 .page-detail .title {
   font-size: 4em;
@@ -12312,27 +12335,10 @@ footer {
   margin-bottom: 20px;
 }
 .page-detail .title .votes-and-rating {
-  color: red;
+  color: rgb(193, 3, 3);
   position: absolute;
   right: 10px;
   font-size: 30px; /* Ajustez cette valeur pour changer la taille de la police */
-}
-.page-detail .website-button {
-  display: inline-block;
-  background-color: red;
-  color: white;
-  padding: 10px 20px;
-  text-decoration: none;
-  font-weight: bold;
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  z-index: 10;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-.page-detail .website-button:hover {
-  background-color: darkred;
 }
 .page-detail .presentation-video {
   width: 100%;

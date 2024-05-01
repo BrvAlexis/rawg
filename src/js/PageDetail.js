@@ -68,7 +68,7 @@ const PageDetail = (argument) => {
     <h2>BUY</h2>
     <p class="stores"><span></span></p>      
             
-    <a href="" class="website">Site Web</a>
+    <a href="" class="website">Check Website</a>
             
     <h2>TRAILER</h2>
     <video class="presentation-video" controls>

@@ -4,7 +4,7 @@ $font-size: 16px;
 $font-size-title: 50px;
 $font-family: Arial, sans-serif;
 $margin: 10px;
-$color-title: red;
+$color-title: rgb(193, 3, 3);
 
 // Mixins
 @mixin border-radius($radius) {
@@ -69,7 +69,7 @@ body {
       bottom: 0;
       left: 50%; // Centrer horizontalement
       transform: translateX(-50%); // Ajuster pour le centrage parfait
-      background-color: red; // Pour rendre le bouton rouge
+      background-color: rgb(193, 3, 3); // Pour rendre le bouton rouge
       color: white; // Pour rendre le texte blanc
       border: none; // Pour supprimer la bordure
       padding: 10px 20px; // Pour rendre le bouton rectangulaire
@@ -81,7 +81,7 @@ body {
   
 }
 .platform-select {
-  background-color: red;
+  background-color: rgb(193, 3, 3);
   
   color: white; // Pour que le texte soit visible
   padding: 10px; // Pour un cadre plus gros
@@ -213,7 +213,7 @@ footer {
 }
 
   #redBar {
-    background-color: red; // Pour rendre la barre rouge
+    background-color: rgb(193, 3, 3); // Pour rendre la barre rouge
     height: 10px; // Hauteur de la barre
     width: 15%; // Largeur de la barre
     position: absolute; // Positionne la barre par rapport au pied de page
@@ -228,7 +228,7 @@ footer {
   p.stores a {
     color: white; /* Met la couleur du texte en blanc */
     text-decoration: none; /* Supprime le soulignement */
-    border-bottom: 2px solid red; /* Ajoute une bordure inférieure rouge */   
+    border-bottom: 2px solid rgb(193, 3, 3); /* Ajoute une bordure inférieure rouge */   
     text-decoration: none; /* Supprime le soulignement */
     padding: 2px; /* Ajoute un peu d'espace autour du texte */
     margin-bottom: 10px; /* Ajoute un espace en dessous de chaque lien */
@@ -237,7 +237,7 @@ footer {
   }
 
   h2 {
-    color: red;
+    color:rgb(193, 3, 3);
     font-size: 3em;
   }
   .container {
@@ -265,8 +265,8 @@ footer {
   }
  
   .article {
-    width: 90%;
-    
+    width: 100%;
+    position: relative;
   }
 
    
@@ -274,6 +274,30 @@ footer {
     .main-image {
       width: 100%;
       height: auto;
+      
+    }
+    a.website {
+      text-decoration: none;
+      position: absolute;
+      top: 600px;
+      right: 20px;
+      z-index: 1;
+      background-color: rgb(193, 3, 3);
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    
+    a.website::after {
+      content: "";
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 20px solid white;
+      margin-left: 50px;
     }
 
     .title {
@@ -285,7 +309,7 @@ footer {
        
        .votes-and-rating {
         // Changez la couleur du texte en rouge
-        color: red;
+        color:rgb(193, 3, 3);
         // Positionnez à droite
         position: absolute;
         right: 10px;
@@ -297,29 +321,6 @@ footer {
     }
   
     
-    .website-button {
-      display: inline-block;
-      background-color: red;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      font-weight: bold;
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      z-index: 10;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    
-    .website-button:hover {
-      background-color: darkred;
-    }
-
-    
-
-
-
     .presentation-video {
       width: 100%;
       height: auto;
