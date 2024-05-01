@@ -4,6 +4,40 @@ const PageDetail = (argument) => {
   const preparePage = () => {
     const cleanedArgument = argument.trim().replace(/\s+/g, "-");
 
+    const fetchMovies = (gameId) => {
+      fetch(`https://api.rawg.io/api/games/${gameId}/movies?key=${API_KEY}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const movies = data.results;
+          const moviesDOM = document.querySelector(".movies");
+          if (movies.length > 0) {
+            const movie = movies[0]; // Prenez seulement le premier film
+    
+            const movieElement = document.createElement("div");
+            movieElement.classList.add("movie");
+    
+            const titleElement = document.createElement("h3");
+            titleElement.textContent = movie.name;
+            movieElement.appendChild(titleElement);
+    
+            const videoElement = document.createElement("video");
+            videoElement.src = movie.preview;
+            videoElement.controls = true;
+            videoElement.width = 800; // Définissez la largeur de la vidéo
+            videoElement.height = 450; // Définissez la hauteur de la vidéo
+            movieElement.appendChild(videoElement);
+    
+            moviesDOM.appendChild(movieElement);
+          }
+        })
+        .catch((error) => console.log('There was a problem with the fetch operation: ' + error.message));
+    };
+
     const displayGame = (gameData, screenshotsData) => {
       const { name, released, description, publishers, genres, platforms, website, rating, ratings_count, stores, background_image, developers, tags, clip } = gameData;
       const screenshots = screenshotsData.results;
@@ -49,6 +83,7 @@ const PageDetail = (argument) => {
       if (screenshots) {
         articleDOM.querySelector("div.screenshots").innerHTML = screenshots.map(screenshot => `<img src="${screenshot.image}" alt="Screenshot of ${name}">`).join('');
       }
+      fetchMovies(gameData.id);
     };
     const fetchGame = (url, argument) => {
       fetch(`${url}${argument}?key=${API_KEY}`)
@@ -102,10 +137,7 @@ const PageDetail = (argument) => {
     <a href="" class="website">Check Website</a>
             
     <h2>TRAILER</h2>
-    <video class="presentation-video" controls>
-    <source src="" type="video/mp4">
-    Votre navigateur ne supporte pas la vidéo.
-    </video>
+    <div class="movies"></div>
 
         <h2>SCREENSHOTS</h2>
     <div class="screenshots"></div>

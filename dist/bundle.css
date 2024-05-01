@@ -12340,10 +12340,10 @@ footer {
   right: 10px;
   font-size: 30px; /* Ajustez cette valeur pour changer la taille de la police */
 }
-.page-detail .presentation-video {
-  width: 80%;
+.page-detail .movies {
+  width: 100%;
   height: auto;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .page-detail .screenshots {
   display: flex;
