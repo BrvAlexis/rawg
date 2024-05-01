@@ -12341,18 +12341,18 @@ footer {
   font-size: 30px; /* Ajustez cette valeur pour changer la taille de la police */
 }
 .page-detail .presentation-video {
-  width: 100%;
+  width: 80%;
   height: auto;
   margin-top: 20px;
 }
 .page-detail .screenshots {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 20px;
+  justify-content: space-between; /* Répartit uniformément les éléments le long de l'axe horizontal avec un espace égal entre eux */
 }
 .page-detail .screenshots img {
-  width: 200px;
+  flex: 1 0 calc(25% - 20px); /* Les éléments prendront 25% de la largeur du conteneur (moins les marges) */
+  width: calc(25% - 20px); /* La largeur de chaque image sera de 25% de la largeur du conteneur (moins les marges) */
   height: auto;
   margin: 10px;
 }
