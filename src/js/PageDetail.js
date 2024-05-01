@@ -9,16 +9,15 @@ const PageDetail = (argument) => {
       const articleDOM = document.querySelector(".page-detail .article");
       
       
-      articleDOM.querySelector("h1.title").innerHTML = name;
+      articleDOM.querySelector("h1.title").innerHTML = `${name} <span class="votes-and-rating">${rating}/5 - ${ratings_count} votes</span>`;
       articleDOM.querySelector("p.release-date span").innerHTML = new Date(released).toLocaleDateString();
       articleDOM.querySelector("p.description").innerHTML = description;
       articleDOM.querySelector("p.publisher span").innerHTML = publishers && publishers.length > 0 ? publishers[0].name : 'N/A';
       articleDOM.querySelector("p.genres span").innerHTML = genres.map(genre => genre.name).join(', ');
       articleDOM.querySelector("p.platforms span").innerHTML = platforms.map(platform => platform.platform.name).join(', ');
       articleDOM.querySelector("a.website").href = website;
-      articleDOM.querySelector("p.rating span").innerHTML = rating;
-      articleDOM.querySelector("p.votes span").innerHTML = ratings_count;
-      articleDOM.querySelector("p.stores span").innerHTML = stores.map(store => `<a href="${store.url_en}" target="_blank">${store.store.name}</a>`).join(', ');
+     
+      articleDOM.querySelector("p.stores span").innerHTML = stores.map(store => `<a href="${store.url_en}" target="_blank">${store.store.name}</a>`).join('<br>');
     
       
       articleDOM.querySelector("img.main-image").src = background_image;
@@ -54,46 +53,47 @@ const PageDetail = (argument) => {
     <img class="main-image" src="" alt="Main image">
     <h1 class="title"></h1>
             
-            <h2>Informations générales</h2>
-    <p class="rating">Note moyenne : <span></span></p>
-    <p class="votes">Nombre de votes : <span></span></p>
-    <p class="release-date">Date de sortie : <span></span></p>
+            
+   
+    
     <p class="description"></p>
+    <div class="container">
+    <p class="release-date"><strong>Release Date</strong><br><span></span></p>    
+    <p class="developers"><strong>Developer</strong> <br><span></span></p>
+    <p class="platforms"><strong>Platforms</strong><br><span></span></p>
+    <p class="publisher"><strong>Publiser</strong><br><span></span></p>
+    <p class="genres"><strong>Genre</strong> <br><span></span></p>
+    <p class="tags"><strong>Tags</strong> <br><span></span></p>
+  </div>
+    <h2>BUY</h2>
+    <p class="stores"><span></span></p>      
             
-            <h2>Développeurs et éditeurs</h2>
-    <p class="developers">Studio(s) de développement : <span></span></p>
-    <p class="tags">Tags : <span></span></p>
-    <p class="publisher">Éditeur : <span></span></p>
-            
-            <h2>Genres et plateformes</h2>
-    <p class="genres">Genres : <span></span></p>
-    <p class="platforms">Plateformes : <span></span></p>
-            
-            <h2>Tags</h2>
-            <p class="tags">Tags : <span></span></p>
-            
-            <h2>Magasins</h2>
-            <p class="stores">Magasins : <span></span></p>
-            
-            <h2>Site Web</h2>
     <a href="" class="website">Site Web</a>
             
-            <h2>Vidéo de présentation</h2>
+    <h2>TRAILER</h2>
     <video class="presentation-video" controls>
-      <source src="" type="video/mp4">
-      Votre navigateur ne supporte pas la vidéo.
+    <source src="" type="video/mp4">
+    Votre navigateur ne supporte pas la vidéo.
     </video>
-    
-            <h2>Captures d'écran</h2>
+
+        <h2>SCREENSHOTS</h2>
     <div class="screenshots"></div>
-    <p class="stores">Magasins : <span></span></p>
-  </div>
-</section>
+
+    </div>
+    </section>
     `;
 
     preparePage();
-  };
+    };
 
-  render();
-};
-export default PageDetail;
+    render();
+    };
+    export default PageDetail;
+        
+            
+            
+           
+            
+            
+            
+            

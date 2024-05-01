@@ -224,9 +224,52 @@ footer {
 
 // Styles de la page de détail
 .page-detail {
+
+  p.stores a {
+    color: white; /* Met la couleur du texte en blanc */
+    text-decoration: none; /* Supprime le soulignement */
+    border-bottom: 2px solid red; /* Ajoute une bordure inférieure rouge */   
+    text-decoration: none; /* Supprime le soulignement */
+    padding: 2px; /* Ajoute un peu d'espace autour du texte */
+    margin-bottom: 10px; /* Ajoute un espace en dessous de chaque lien */
+    display: inline-block; /* Chaque lien conserve sa taille de contenu */
+    
+  }
+
+  h2 {
+    color: red;
+    font-size: 3em;
+  }
+  .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    border: 0;
+     /* Fait en sorte que le conteneur prenne toute la largeur de l'article */
+    
+    
+  }
+  
+  .container p {
+    flex: 1 0 20%; /* Les éléments prendront la largeur nécessaire */
+    max-width: 20%;
+    
+    margin: 10px; /* Ajoute une marge autour de chaque carte */
+    padding: 20px; /* Ajoute un rembourrage à l'intérieur de chaque carte */
+   
+    
+    text-align: left; /* Centre le texte dans chaque carte */
+    
+  }
+ 
   .article {
-    width: 80%;
-    margin: 0 auto;
+    width: 90%;
+    
+  }
+
+   
 
     .main-image {
       width: 100%;
@@ -234,24 +277,26 @@ footer {
     }
 
     .title {
-      font-size: 2em;
-      text-align: center;
+      font-size: 4em;
+      text-align: left;
       margin-top: 20px;
-    }
+      margin-bottom: 20px;
 
-    .description,
-    .release-date,
-    .rating,
-    .votes,
-    .developers,
-    .publisher,
-    .genres,
-    .platforms,
-    .tags,
-    .stores {
-      margin-top: 10px;
+       
+       .votes-and-rating {
+        // Changez la couleur du texte en rouge
+        color: red;
+        // Positionnez à droite
+        position: absolute;
+        right: 10px;
+        // Ajustez la taille de la police
+        font-size: 30px; /* Ajustez cette valeur pour changer la taille de la police */
+      }
+     
+     
     }
-
+  
+    
     .website-button {
       display: inline-block;
       background-color: red;
@@ -293,5 +338,5 @@ footer {
         margin: 10px;
       }
     }
-  }
+  
 }

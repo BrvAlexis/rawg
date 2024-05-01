@@ -12269,32 +12269,55 @@ footer {
   margin-bottom: 100px;
 }
 
-.page-detail .article {
-  width: 80%;
-  margin: 0 auto;
+.page-detail p.stores a {
+  color: white; /* Met la couleur du texte en blanc */
+  text-decoration: none; /* Supprime le soulignement */
+  border-bottom: 2px solid red; /* Ajoute une bordure inférieure rouge */
+  text-decoration: none; /* Supprime le soulignement */
+  padding: 2px; /* Ajoute un peu d'espace autour du texte */
+  margin-bottom: 10px; /* Ajoute un espace en dessous de chaque lien */
+  display: inline-block; /* Chaque lien conserve sa taille de contenu */
 }
-.page-detail .article .main-image {
+.page-detail h2 {
+  color: red;
+  font-size: 3em;
+}
+.page-detail .container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* Fait en sorte que le conteneur prenne toute la largeur de l'article */
+}
+.page-detail .container p {
+  flex: 1 0 20%; /* Les éléments prendront la largeur nécessaire */
+  max-width: 20%;
+  margin: 10px; /* Ajoute une marge autour de chaque carte */
+  padding: 20px; /* Ajoute un rembourrage à l'intérieur de chaque carte */
+  text-align: left; /* Centre le texte dans chaque carte */
+}
+.page-detail .article {
+  width: 90%;
+}
+.page-detail .main-image {
   width: 100%;
   height: auto;
 }
-.page-detail .article .title {
-  font-size: 2em;
-  text-align: center;
+.page-detail .title {
+  font-size: 4em;
+  text-align: left;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
-.page-detail .article .description,
-.page-detail .article .release-date,
-.page-detail .article .rating,
-.page-detail .article .votes,
-.page-detail .article .developers,
-.page-detail .article .publisher,
-.page-detail .article .genres,
-.page-detail .article .platforms,
-.page-detail .article .tags,
-.page-detail .article .stores {
-  margin-top: 10px;
+.page-detail .title .votes-and-rating {
+  color: red;
+  position: absolute;
+  right: 10px;
+  font-size: 30px; /* Ajustez cette valeur pour changer la taille de la police */
 }
-.page-detail .article .website-button {
+.page-detail .website-button {
   display: inline-block;
   background-color: red;
   color: white;
@@ -12308,21 +12331,21 @@ footer {
   border-radius: 5px;
   transition: background-color 0.3s;
 }
-.page-detail .article .website-button:hover {
+.page-detail .website-button:hover {
   background-color: darkred;
 }
-.page-detail .article .presentation-video {
+.page-detail .presentation-video {
   width: 100%;
   height: auto;
   margin-top: 20px;
 }
-.page-detail .article .screenshots {
+.page-detail .screenshots {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
 }
-.page-detail .article .screenshots img {
+.page-detail .screenshots img {
   width: 200px;
   height: auto;
   margin: 10px;
