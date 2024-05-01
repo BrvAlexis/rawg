@@ -1,4 +1,7 @@
 import { API_KEY } from './apikey.js';
+import PageList from './PageList.js';
+
+window.PageList = PageList;
 
 const PageDetail = (argument) => {
   const preparePage = () => {
@@ -17,21 +20,21 @@ const PageDetail = (argument) => {
           const moviesDOM = document.querySelector(".movies");
           if (movies.length > 0) {
             const movie = movies[0]; // Prenez seulement le premier film
-    
+
             const movieElement = document.createElement("div");
             movieElement.classList.add("movie");
-    
+
             const titleElement = document.createElement("h3");
             titleElement.textContent = movie.name;
             movieElement.appendChild(titleElement);
-    
+
             const videoElement = document.createElement("video");
             videoElement.src = movie.preview;
             videoElement.controls = true;
             videoElement.width = 800; // Définissez la largeur de la vidéo
             videoElement.height = 450; // Définissez la hauteur de la vidéo
             movieElement.appendChild(videoElement);
-    
+
             moviesDOM.appendChild(movieElement);
           }
         })
@@ -42,8 +45,7 @@ const PageDetail = (argument) => {
       const { name, released, description, publishers, genres, platforms, website, rating, ratings_count, stores, background_image, developers, tags, clip } = gameData;
       const screenshots = screenshotsData.results;
       const articleDOM = document.querySelector(".page-detail .article");
-    
-    
+
       if (name && rating && ratings_count) {
         articleDOM.querySelector("h1.title").innerHTML = `${name} <span class="votes-and-rating">${rating}/5 - ${ratings_count} votes</span>`;
       }
@@ -72,7 +74,7 @@ const PageDetail = (argument) => {
         articleDOM.querySelector("img.main-image").src = background_image;
       }
       if (developers) {
-        articleDOM.querySelector("p.developers span").innerHTML = developers.map(developer => developer.name).join(', ');
+        articleDOM.querySelector("p.developers span").innerHTML = developers.map(developer => `<a href="#" onclick="event.preventDefault(); PageList('${developer.name}');">${developer.name}</a>`).join(', ');
       }
       if (tags) {
         articleDOM.querySelector("p.tags span").innerHTML = tags.map(tag => tag.name).join(', ');
@@ -85,6 +87,7 @@ const PageDetail = (argument) => {
       }
       fetchMovies(gameData.id);
     };
+
     const fetchGame = (url, argument) => {
       fetch(`${url}${argument}?key=${API_KEY}`)
         .then((response) => {
@@ -108,52 +111,43 @@ const PageDetail = (argument) => {
         })
         .catch((error) => console.log('There was a problem with the fetch operation: ' + error.message));
     };
-    
+
     fetchGame(`https://api.rawg.io/api/games/`, cleanedArgument);
   };
+
   const render = () => {
     document.querySelector("#pageContent").innerHTML = `
     <section class="page-detail">
-  <div class="article">
-    
-    <img class="main-image" src="" alt="Main image">
-    <h1 class="title"></h1>
-            
-            
-   
-    
-    <p class="description"></p>
-    <div class="container">
-    <p class="release-date"><strong>Release Date</strong><br><span></span></p>    
-    <p class="developers"><strong>Developer</strong> <br><span></span></p>
-    <p class="platforms"><strong>Platforms</strong><br><span></span></p>
-    <p class="publisher"><strong>Publiser</strong><br><span></span></p>
-    <p class="genres"><strong>Genre</strong> <br><span></span></p>
-    <p class="tags"><strong>Tags</strong> <br><span></span></p>
-  </div>
-    <h2>BUY</h2>
-    <p class="stores"><span></span></p>      
-            
-    <a href="" class="website">Check Website</a>
-            
-    <h2>TRAILER</h2>
-    <div class="movies"></div>
-
+      <div class="article">
+        <img class="main-image" src="" alt="Main image">
+        <h1 class="title"></h1>
+        <p class="description"></p>
+        <div class="container">
+          <p class="release-date"><strong>Release Date</strong><br><span></span></p>    
+          <p class="developers"><strong>Developer</strong> <br><span></span></p>
+          <p class="platforms"><strong>Platforms</strong><br><span></span></p>
+          <p class="publisher"><strong>Publiser</strong><br><span></span></p>
+          <p class="genres"><strong>Genre</strong> <br><span></span></p>
+          <p class="tags"><strong>Tags</strong> <br><span></span></p>
+        </div>
+        <h2>BUY</h2>
+        <p class="stores"><span></span></p>      
+        <a href="" class="website">Check Website</a>
+        <h2>TRAILER</h2>
+        <div class="movies"></div>
         <h2>SCREENSHOTS</h2>
-    <div class="screenshots"></div>
-
-    </div>
+        <div class="screenshots"></div>
+      </div>
     </section>
     `;
 
     preparePage();
-    };
+  };
 
-    render();
-    };
-    export default PageDetail;
-        
-            
+  render();
+};
+
+export default PageDetail;
             
            
             

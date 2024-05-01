@@ -12286,16 +12286,19 @@ footer {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  float: right;
   margin: 0;
   padding: 0;
   border: 0;
-  /* Fait en sorte que le conteneur prenne toute la largeur de l'article */
+  max-width: 100% !important;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 .page-detail .container p {
   flex: 1 0 20%; /* Les éléments prendront la largeur nécessaire */
-  max-width: 20%;
-  margin: 10px; /* Ajoute une marge autour de chaque carte */
-  padding: 20px; /* Ajoute un rembourrage à l'intérieur de chaque carte */
+  max-width: 100%;
+  margin: 5px; /* Ajoute une marge autour de chaque carte */
+  padding: 0px; /* Ajoute un rembourrage à l'intérieur de chaque carte */
   text-align: left; /* Centre le texte dans chaque carte */
 }
 .page-detail .article {

@@ -142,42 +142,41 @@ const PageList = (argument = '', containerId = 'pageContent') => {
                   pageContent.appendChild(showMoreButton);
                 }
               
-                // Ajoutez un écouteur d'événements au bouton "Show More"
-showMoreButton.addEventListener('click', function() {
-  if (count < 27) {
-    count++;
-    PageList(document.querySelector('.search-form input[type="text"]').value);
-    if (count >= 2) {
-      // Cachez le bouton "Show More" après 2 clics
-      this.style.display = 'none';
+  // Ajoutez un écouteur d'événements au bouton "Show More"
+  showMoreButton.addEventListener('click', function() {
+    if (count < 27) {
+      count++;
+      PageList(document.querySelector('.search-form input[type="text"]').value);
+      if (count >= 2) {
+        // Cachez le bouton "Show More" après 2 clics
+        this.style.display = 'none';
+      }
+    } else {
+      console.log('Pagination limit reached');
+      this.style.display = 'none'; // Cachez le bouton "Show More" après 27 pages
     }
-  } else {
-    console.log('Pagination limit reached');
-    this.style.display = 'none'; // Cachez le bouton "Show More" après 27 pages
-  }
-});
+  });              
               
-                preparePage();
-                fetchPlatforms();
-              };
-              
-              render();
-              console.log(pageContent.innerHTML);
-      
-    };
-
-
-    
-
-
-
-
-
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
+  preparePage();
   fetchPlatforms();
-});
+};
+
+render();
+console.log(pageContent.innerHTML);
+
+};           
+
+    document.addEventListener('DOMContentLoaded', function() {
+      fetchPlatforms();
+    });
+        
+    export default PageList;
     
-export default PageList;
+
+
+
+
+
+
+
+
