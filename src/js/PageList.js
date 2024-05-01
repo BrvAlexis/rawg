@@ -90,8 +90,9 @@ const PageList = (argument = '', containerId = 'pageContent') => {
           };
     
           const fetchList = (url, argument, platform, page = 1) => {
-            const nextYear = new Date().getFullYear() + 1;
-            let finalURL = argument ? `${url}&search=${argument}&page_size=9&ordering=-added&page=${page}` : `${url}&dates=${nextYear}-01-01,${nextYear}-12-31&page_size=9&page=${page}`;
+            const currentYear = new Date().getFullYear();
+            const nextYear = currentYear + 1;
+            let finalURL = argument ? `${url}&search=${argument}&page_size=9&ordering=-added&page=${page}` : `${url}&dates=${currentYear}-01-01,${nextYear}-12-31&page_size=9&page=${page}`;
             if (platform) {
               finalURL += `&platforms=${platform}`;
             }
@@ -99,12 +100,16 @@ const PageList = (argument = '', containerId = 'pageContent') => {
               .then((response) => response.json())
               .then((data) => {
                 console.log(data);
-                displayResults(data.results, page > 1);
+                if (data.results) {
+                  displayResults(data.results, page > 1);
+                } else {
+                  console.log('No results found');
+                }
               });
           };
           
           fetchList(`https://api.rawg.io/api/games?key=${API_KEY}`, cleanedArgument, platform, count + 1);
-        };
+          };
               
         
 
@@ -117,34 +122,47 @@ const PageList = (argument = '', containerId = 'pageContent') => {
       
               const render = () => {
                 const pageContent = document.getElementById(containerId);
-            
+              
                 // Créez un nouvel élément section pour contenir le contenu de PageList
                 const pageListSection = document.createElement('section');
                 pageListSection.className = 'page-list';
                 pageListSection.innerHTML = `
                   <div class="articles">Loading...</div>
-                  <button id="showMore">SHOW MORE</button>
                 `;
-                // Ajoutez la section à pageContent
-  pageContent.appendChild(pageListSection);
-
-         // Maintenant que le bouton "Show more" est dans le DOM, vous pouvez y ajouter un écouteur d'événements
-  document.getElementById('showMore').addEventListener('click', function() {
+                pageContent.appendChild(pageListSection);
+              
+                // Vérifiez si le bouton "Show More" existe déjà
+                let showMoreButton = document.getElementById('showMore');
+              
+                // Si le bouton "Show More" n'existe pas, créez-le
+                if (!showMoreButton) {
+                  showMoreButton = document.createElement('button');
+                  showMoreButton.id = 'showMore';
+                  showMoreButton.textContent = 'SHOW MORE';
+                  pageContent.appendChild(showMoreButton);
+                }
+              
+                // Ajoutez un écouteur d'événements au bouton "Show More"
+showMoreButton.addEventListener('click', function() {
+  if (count < 27) {
     count++;
     PageList(document.querySelector('.search-form input[type="text"]').value);
     if (count >= 2) {
-        // Cachez le bouton "Show more" après 2 clics
-        this.style.display = 'none';
+      // Cachez le bouton "Show More" après 2 clics
+      this.style.display = 'none';
     }
-  });
-    // Ajoutez la section à pageContent
-    pageContent.appendChild(pageListSection);
-        preparePage();
-        fetchPlatforms();
-      };
-    
-      render();
-      console.log(pageContent.innerHTML);
+  } else {
+    console.log('Pagination limit reached');
+    this.style.display = 'none'; // Cachez le bouton "Show More" après 27 pages
+  }
+});
+              
+                preparePage();
+                fetchPlatforms();
+              };
+              
+              render();
+              console.log(pageContent.innerHTML);
       
     };
 
