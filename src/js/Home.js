@@ -16,10 +16,13 @@ const Home = (argument = '') => {
   groundbreaking new technologies, and never-before-seen products will be showcased. The Hyper Progame connects you
   with both new and existing partners, industry executives, gamers, and social influencers providing unprecedented exposure`;
   
+  const platformSelect = document.querySelector('.platform-select');
+  platformSelect.remove()
+
   // Append new elements
   pageContent.appendChild(h1);
   pageContent.appendChild(p);
-
+  pageContent.appendChild(platformSelect);
   // Create a container for PageList
   const pageListContainer = document.createElement('div');
   pageListContainer.id = 'pageListContainer';
