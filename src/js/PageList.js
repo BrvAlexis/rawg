@@ -24,7 +24,7 @@ const fetchPlatforms = () => {
     
 };
 let count = 0
-const PageList = (argument = '') => {
+const PageList = (argument = '', containerId = 'pageContent') => {
     
     const preparePage = () => {
         const platform = document.querySelector('.platform-select').value;
@@ -63,6 +63,7 @@ const PageList = (argument = '') => {
                               Votes : ${article.ratings_count}
                           </div>
                       </a>
+                      
                   </article>`;
               
               const articleElement = document.createElement('div');
@@ -104,15 +105,7 @@ const PageList = (argument = '') => {
           fetchList(`https://api.rawg.io/api/games?key=${API_KEY}`, cleanedArgument, platform, count + 1);
         };
               
-        // Ajoutez un écouteur d'événements au bouton "Show more"
-              document.getElementById('showMore').addEventListener('click', function() {
-                count++;
-                PageList(document.querySelector('.search-form input[type="text"]').value);
-                if (count >= 2) {
-                    // Cachez le bouton "Show more" après 2 clics
-                    this.style.display = 'none';
-                }
-              });
+        
 
               // Add an event listener to the platform select
               document.querySelector('.platform-select').addEventListener('change', function(event) {
@@ -121,19 +114,37 @@ const PageList = (argument = '') => {
 
     
       
-      
-      const render = () => {
-        pageContent.innerHTML = `
-          <section class="page-list">
-            <div class="articles">Loading...</div>
-          </section>
-        `;
-    
+              const render = () => {
+                const pageContent = document.getElementById(containerId);
+            
+                // Créez un nouvel élément section pour contenir le contenu de PageList
+                const pageListSection = document.createElement('section');
+                pageListSection.className = 'page-list';
+                pageListSection.innerHTML = `
+                  <div class="articles">Loading...</div>
+                  <button id="showMore">SHOW MORE</button>
+                `;
+                // Ajoutez la section à pageContent
+  pageContent.appendChild(pageListSection);
+
+         // Maintenant que le bouton "Show more" est dans le DOM, vous pouvez y ajouter un écouteur d'événements
+  document.getElementById('showMore').addEventListener('click', function() {
+    count++;
+    PageList(document.querySelector('.search-form input[type="text"]').value);
+    if (count >= 2) {
+        // Cachez le bouton "Show more" après 2 clics
+        this.style.display = 'none';
+    }
+  });
+    // Ajoutez la section à pageContent
+    pageContent.appendChild(pageListSection);
         preparePage();
         fetchPlatforms();
       };
     
       render();
+      console.log(pageContent.innerHTML);
+      
     };
 
 
@@ -142,11 +153,7 @@ const PageList = (argument = '') => {
 
 
 
-// Add an event listener to the search form
-document.querySelector('.search-form input[type="text"]').addEventListener('input', function(event) {
-  const searchTerm = event.target.value;
-  PageList(searchTerm);
-});
+
 
 
 

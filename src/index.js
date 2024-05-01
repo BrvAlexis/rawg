@@ -23,3 +23,9 @@ const callRoute = () => {
   
   window.addEventListener('hashchange', () => callRoute());
   window.addEventListener('DOMContentLoaded', () => callRoute());
+
+  // Add an event listener to the search form
+document.querySelector('.search-form input[type="text"]').addEventListener('input', function(event) {
+  const searchTerm = event.target.value;
+  PageList(searchTerm);
+});

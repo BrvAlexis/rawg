@@ -47,7 +47,7 @@ const PageDetail = (argument) => {
   };
 
   const render = () => {
-    pageContent.innerHTML = `
+    document.querySelector("#pageContent").innerHTML = `
     <section class="page-detail">
   <div class="article">
     
