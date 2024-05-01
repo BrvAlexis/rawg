@@ -90,7 +90,8 @@ const PageList = (argument = '', containerId = 'pageContent') => {
           };
     
           const fetchList = (url, argument, platform, page = 1) => {
-            let finalURL = argument ? `${url}&search=${argument}&page_size=9&ordering=-released&page=${page}` : `${url}&page_size=9&page=${page}`;
+            const nextYear = new Date().getFullYear() + 1;
+            let finalURL = argument ? `${url}&search=${argument}&page_size=9&ordering=-added&page=${page}` : `${url}&dates=${nextYear}-01-01,${nextYear}-12-31&page_size=9&page=${page}`;
             if (platform) {
               finalURL += `&platforms=${platform}`;
             }
